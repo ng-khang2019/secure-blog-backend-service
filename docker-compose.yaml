@@ -3,7 +3,7 @@ services:
     image: postgres:latest
     container_name: postgres-db
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - ${POSTGRES_PORT}:5432
     restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -22,7 +22,7 @@ services:
     image: redis:7.4
     restart: always
     ports:
-      - "${REDIS_PORT}:${REDIS_CONT_PORT}"
+      - ${REDIS_PORT}:${REDIS_CONT_PORT}
     command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     volumes:
       - redis_data:/data
@@ -30,7 +30,7 @@ services:
 volumes:
   postgres_data:
     external: true
-    name: c1b7e8eae1b6ffe9cac6748da65cb7cce21687001e451d7bc97b4651f837a6d0
+    name: ${POSTGRES_DATA_VOLUME}
 
   redis_data:
     driver: local
