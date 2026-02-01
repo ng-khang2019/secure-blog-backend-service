@@ -36,6 +36,7 @@ public class SecurityConfig {
     private final JwtDecoder jwtDecoder;
     private final JwtAuthenticationConverter jwtAuthenticationConverter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler accessDeniedHandler;
 
     @Value("${frontend.url}")
@@ -70,7 +71,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationEntryPoint authenticationEntryPoint) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults());
         http.sessionManagement(session ->
@@ -78,13 +79,15 @@ public class SecurityConfig {
         http.authorizeHttpRequests(request -> request
                 .requestMatchers(WHITELIST_DEV).permitAll()
                 .anyRequest().authenticated());
+        http.exceptionHandling(exception -> exception
+                .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler));
         http.oauth2ResourceServer(oauth2 -> oauth2
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler)
                 .jwt(jwt -> jwt
                     .jwtAuthenticationConverter(jwtAuthenticationConverter)
-                    .decoder(jwtDecoder)
-                ));
+                    .decoder(jwtDecoder)));
         return http.build();
     }
 
