@@ -28,8 +28,7 @@ public class UserPublicController {
     @PutMapping("/update")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<UserDetailsResponse> updateCurrentUser(
-            @RequestBody UserUpdateRequest request
-    ) {
+            @RequestBody UserUpdateRequest request) {
         UserDetailsResponse updatedUser= userService.updateUser(request);
         return ResponseEntity.ok(updatedUser);
     }
@@ -47,6 +46,12 @@ public class UserPublicController {
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<UserProfileResponse> getCurrentUserProfile() {
         return ResponseEntity.ok(userService.getCurrentUserProfile());
+    }
+
+    @GetMapping("/my-profile-details")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<UserDetailsResponse> getCurrentUserProfileDetails() {
+        return ResponseEntity.ok(userService.getCurrentUserDetails());
     }
 
     // Load user by id
