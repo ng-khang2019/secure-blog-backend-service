@@ -48,6 +48,7 @@ public class UserPublicController {
         return ResponseEntity.ok(userService.getCurrentUserProfile());
     }
 
+    // Load current user full details
     @GetMapping("/my-profile-details")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<UserDetailsResponse> getCurrentUserProfileDetails() {
