@@ -41,6 +41,12 @@ public class UserPublicController {
         return ResponseEntity.noContent().build();
     }
 
+    // Load user by id
+    @GetMapping("/{id}")
+    public ResponseEntity<UserProfileResponse> getUserProfile(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserProfileById(id));
+    }
+
     // Load the current user's profile
     @GetMapping("/my-profile")
     @PreAuthorize("hasRole('USER')")
@@ -53,11 +59,5 @@ public class UserPublicController {
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<UserDetailsResponse> getCurrentUserProfileDetails() {
         return ResponseEntity.ok(userService.getCurrentUserDetails());
-    }
-
-    // Load user by id
-    @GetMapping("/{id}")
-    public ResponseEntity<UserProfileResponse> getUserProfile(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.getUserProfileById(id));
     }
 }

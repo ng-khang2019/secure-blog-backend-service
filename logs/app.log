@@ -5525,3 +5525,104 @@ You may need to update both your build tool settings as well as your IDE.
 2026-02-01T17:06:56.866+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-1] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserAdminController.getUserById(java.lang.Long); target is of class [com.project.prjauth.controller.UserAdminController]
 2026-02-01T17:06:56.868+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-1] horizationManagerBeforeMethodInterceptor : Failed to authorize ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserAdminController.getUserById(java.lang.Long); target is of class [com.project.prjauth.controller.UserAdminController] with authorization manager org.springframework.security.authorization.ObservationAuthorizationManager@5a23edf8 and result ExpressionAuthorizationDecision [granted=false, expressionAttribute=hasRole('ADMIN')]
 2026-02-01T17:06:56.871+07:00  WARN 86406 --- [Project Authentication] [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authorization.AuthorizationDeniedException: Access Denied]
+2026-02-01T17:22:57.385+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile
+2026-02-01T17:22:57.386+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-6] o.s.s.oauth2.jwt.JwtTimestampValidator   : Jwt expired at 2026-02-01T10:14:08Z
+2026-02-01T17:22:57.386+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-6] o.s.s.o.s.r.a.JwtAuthenticationProvider  : Failed to authenticate since the JWT was invalid
+2026-02-01T17:22:57.388+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-6] o.s.s.authentication.ProviderManager     : Authentication failed with provider JwtAuthenticationProvider since An error occurred while attempting to decode the Jwt: Jwt expired at 2026-02-01T10:14:08Z
+2026-02-01T17:22:57.389+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-6] o.s.s.authentication.ProviderManager     : Denying authentication since all attempted providers failed
+2026-02-01T17:23:09.840+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/refresh
+2026-02-01T17:23:09.840+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T17:23:09.841+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/refresh
+2026-02-01T17:23:09.865+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T17:23:09.866+07:00 TRACE 86406 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T17:23:09.872+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.created_by,
+        r1_1.description,
+        r1_1.name,
+        p1_0.role_id,
+        p1_1.id,
+        p1_1.created_at,
+        p1_1.created_by,
+        p1_1.description,
+        p1_1.name,
+        p1_1.updated_at,
+        p1_1.updated_by,
+        r1_1.updated_at,
+        r1_1.updated_by,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_role r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    left join
+        role_permission p1_0 
+            on r1_1.id=p1_0.role_id 
+    left join
+        permissions p1_1 
+            on p1_1.id=p1_0.permission_id 
+    where
+        u1_0.email=?
+2026-02-01T17:23:09.872+07:00 TRACE 86406 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T17:23:48.242+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/logout
+2026-02-01T17:23:48.243+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T17:23:48.243+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/logout
+2026-02-01T17:23:48.245+07:00 DEBUG 86406 --- [Project Authentication] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T17:23:48.246+07:00 TRACE 86406 --- [Project Authentication] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T17:25:43.655+07:00  INFO 86406 --- [Project Authentication] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-01T17:25:43.656+07:00  INFO 86406 --- [Project Authentication] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-01T17:25:43.662+07:00  INFO 86406 --- [Project Authentication] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-01T17:25:43.662+07:00  INFO 86406 --- [Project Authentication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2026-02-01T17:25:43.663+07:00  INFO 86406 --- [Project Authentication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
