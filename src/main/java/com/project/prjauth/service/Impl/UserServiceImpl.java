@@ -95,11 +95,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfileResponse getCurrentUserProfile() {
-        Long currentUserId = AuthenticationUtil.getUserId();
-        if (currentUserId == null) {
+        String userEmail = AuthenticationUtil.getCurrentUserEmail();
+        if (userEmail == null) {
             throw new ResourceNotFoundException("User not found!");
         }
-        return userDisplayRepository.findUserProfileById(currentUserId);
+        return userDisplayRepository.findUserProfileByEmail(userEmail);
     }
 
     @Override
