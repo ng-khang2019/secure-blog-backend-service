@@ -2578,3 +2578,8 @@
         u1_0.email=?
 2026-02-01T14:10:22.726+07:00 TRACE 32010 --- [Project Authentication] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
 2026-02-01T14:10:22.796+07:00 DEBUG 32010 --- [Project Authentication] [http-nio-8080-exec-3] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2026-02-01T15:01:28.837+07:00  INFO 32010 --- [Project Authentication] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-01T15:01:28.840+07:00  INFO 32010 --- [Project Authentication] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-01T15:01:28.875+07:00  INFO 32010 --- [Project Authentication] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-01T15:01:28.881+07:00  INFO 32010 --- [Project Authentication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-01T15:01:28.883+07:00  INFO 32010 --- [Project Authentication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
