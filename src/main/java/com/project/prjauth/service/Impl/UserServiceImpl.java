@@ -62,12 +62,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetailsResponse updateUser(UserUpdateRequest request) {
-        Long currentUserId = AuthenticationUtil.getUserId();
-        if (currentUserId == null) {
-            throw new ResourceNotFoundException("Cound not found current user!");
-        }
-        User user = userRepository.findById(currentUserId)
-                .orElseThrow(() -> new ResourceNotFoundException("User with id: " + currentUserId + " not found!"));
+        User user = userRepository.findByEmail(AuthenticationUtil.getCurrentUserEmail())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found!"));
 
         userMapper.updateUser(user, request);
         return userMapper.toUserDetailsResponse(userRepository.save(user));
@@ -75,7 +71,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updatePassword(PasswordUpdateRequest request) {
-        User user = userRepository.findById(AuthenticationUtil.getUserId())
+        User user = userRepository.findByEmail(AuthenticationUtil.getCurrentUserEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found!"));
 
         // Check the old password if correct
