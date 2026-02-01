@@ -3244,3 +3244,649 @@
 2026-02-01T15:52:19.581+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2026-02-01T15:52:19.587+07:00  INFO 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Started ProjectAuthenticationApplication in 1.464 seconds (process running for 2787.338)
 2026-02-01T15:52:19.589+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-02-01T15:52:52.711+07:00  INFO 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-01T15:52:52.711+07:00  INFO 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-01T15:52:52.713+07:00  INFO 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-01T15:52:52.714+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/refresh
+2026-02-01T15:52:52.716+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T15:52:52.717+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/refresh
+2026-02-01T15:52:52.763+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T15:52:52.764+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
+2026-02-01T15:52:52.773+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.created_by,
+        r1_1.description,
+        r1_1.name,
+        p1_0.role_id,
+        p1_1.id,
+        p1_1.created_at,
+        p1_1.created_by,
+        p1_1.description,
+        p1_1.name,
+        p1_1.updated_at,
+        p1_1.updated_by,
+        r1_1.updated_at,
+        r1_1.updated_by,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_role r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    left join
+        role_permission p1_0 
+            on r1_1.id=p1_0.role_id 
+    left join
+        permissions p1_1 
+            on p1_1.id=p1_0.permission_id 
+    where
+        u1_0.email=?
+2026-02-01T15:52:52.774+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
+2026-02-01T15:53:01.301+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile
+2026-02-01T15:53:01.306+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-3] o.s.s.o.s.r.a.JwtAuthenticationProvider  : Authenticated token
+2026-02-01T15:53:01.307+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-3] .s.r.w.a.BearerTokenAuthenticationFilter : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@e20f5ead, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, Delete, a, post, Upload, post, thumbnail, Upload, profile, photo, View, a, single, user, profile, Create, a, post]]
+2026-02-01T15:53:01.308+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/public/users/my-profile
+2026-02-01T15:53:01.309+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-3] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfile(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T15:53:01.311+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-3] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfile(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T15:53:01.321+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.username,
+        ai1_0.url 
+    from
+        users u1_0 
+    left join
+        images ai1_0 
+            on ai1_0.id=u1_0.avatar_image_id 
+    where
+        u1_0.email=?
+2026-02-01T15:53:01.323+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
+2026-02-01T16:00:01.233+07:00  INFO 44668 --- [Project Authentication] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (0 additions, 3 deletions, 0 modifications)
+2026-02-01T16:00:01.235+07:00  INFO 44668 --- [Project Authentication] [Thread-31] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-01T16:00:01.235+07:00  INFO 44668 --- [Project Authentication] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-01T16:00:01.243+07:00  INFO 44668 --- [Project Authentication] [Thread-31] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-01T16:00:01.244+07:00  INFO 44668 --- [Project Authentication] [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2026-02-01T16:00:01.245+07:00  INFO 44668 --- [Project Authentication] [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2026-02-01T16:00:01.362+07:00  INFO 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Starting ProjectAuthenticationApplication using Java 25.0.1 with PID 44668 (/home/khang-nguyen/Coding Journey/repos/Project Authentication/target/classes started by khang-nguyen in /home/khang-nguyen/Coding Journey/repos/Project Authentication)
+2026-02-01T16:00:01.362+07:00 DEBUG 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Running with Spring Boot v3.5.9, Spring v6.2.15
+2026-02-01T16:00:01.362+07:00  INFO 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : The following 1 profile is active: "dev"
+2026-02-01T16:00:01.624+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-01T16:00:01.625+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-01T16:00:01.637+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 4 JPA repository interfaces.
+2026-02-01T16:00:01.642+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-01T16:00:01.642+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-01T16:00:01.645+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.PermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T16:00:01.645+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T16:00:01.645+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.UserDisplayRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T16:00:01.646+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T16:00:01.646+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 Redis repository interfaces.
+2026-02-01T16:00:01.828+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-01T16:00:01.830+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-01T16:00:01.831+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-01T16:00:01.842+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-01T16:00:01.842+07:00  INFO 44668 --- [Project Authentication] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 477 ms
+2026-02-01T16:00:01.943+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-01T16:00:01.945+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-01T16:00:01.951+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-01T16:00:01.952+07:00  INFO 44668 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2026-02-01T16:00:01.986+07:00  INFO 44668 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection org.postgresql.jdbc.PgConnection@f7b22f6
+2026-02-01T16:00:01.987+07:00  INFO 44668 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2026-02-01T16:00:01.992+07:00  WARN 44668 --- [Project Authentication] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-01T16:00:01.994+07:00  INFO 44668 --- [Project Authentication] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-9)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-01T16:00:02.088+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-01T16:00:02.188+07:00  INFO 44668 --- [Project Authentication] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-01T16:00:02.352+07:00  INFO 44668 --- [Project Authentication] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-02-01T16:00:02.352+07:00  WARN 44668 --- [Project Authentication] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-02-01T16:00:02.653+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-02-01T16:00:02.717+07:00 DEBUG 44668 --- [Project Authentication] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, BearerTokenAuthenticationFilter, AuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-02-01T16:00:02.965+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-02-01T16:00:02.989+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-02-01T16:00:02.996+07:00  INFO 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Started ProjectAuthenticationApplication in 1.659 seconds (process running for 3250.747)
+2026-02-01T16:00:02.997+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-02-01T16:00:04.368+07:00  INFO 44668 --- [Project Authentication] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (3 additions, 0 deletions, 0 modifications)
+2026-02-01T16:00:04.370+07:00  INFO 44668 --- [Project Authentication] [Thread-35] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-01T16:00:04.371+07:00  INFO 44668 --- [Project Authentication] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-01T16:00:04.377+07:00  INFO 44668 --- [Project Authentication] [Thread-35] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-01T16:00:04.378+07:00  INFO 44668 --- [Project Authentication] [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2026-02-01T16:00:04.379+07:00  INFO 44668 --- [Project Authentication] [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+2026-02-01T16:00:04.507+07:00  INFO 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Starting ProjectAuthenticationApplication using Java 25.0.1 with PID 44668 (/home/khang-nguyen/Coding Journey/repos/Project Authentication/target/classes started by khang-nguyen in /home/khang-nguyen/Coding Journey/repos/Project Authentication)
+2026-02-01T16:00:04.507+07:00 DEBUG 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Running with Spring Boot v3.5.9, Spring v6.2.15
+2026-02-01T16:00:04.507+07:00  INFO 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : The following 1 profile is active: "dev"
+2026-02-01T16:00:04.710+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-01T16:00:04.710+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-01T16:00:04.721+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 4 JPA repository interfaces.
+2026-02-01T16:00:04.723+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-01T16:00:04.723+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-01T16:00:04.725+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.PermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T16:00:04.725+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T16:00:04.726+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.UserDisplayRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T16:00:04.726+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T16:00:04.726+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 Redis repository interfaces.
+2026-02-01T16:00:04.822+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-01T16:00:04.823+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-01T16:00:04.823+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-01T16:00:04.831+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-01T16:00:04.831+07:00  INFO 44668 --- [Project Authentication] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 323 ms
+2026-02-01T16:00:04.905+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-01T16:00:04.906+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-01T16:00:04.917+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-01T16:00:04.919+07:00  INFO 44668 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2026-02-01T16:00:04.948+07:00  INFO 44668 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-10 - Added connection org.postgresql.jdbc.PgConnection@41be441
+2026-02-01T16:00:04.948+07:00  INFO 44668 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2026-02-01T16:00:04.962+07:00  WARN 44668 --- [Project Authentication] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-01T16:00:04.966+07:00  INFO 44668 --- [Project Authentication] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-10)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-01T16:00:05.034+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-01T16:00:05.098+07:00  INFO 44668 --- [Project Authentication] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-01T16:00:05.248+07:00  INFO 44668 --- [Project Authentication] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-02-01T16:00:05.249+07:00  WARN 44668 --- [Project Authentication] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-02-01T16:00:05.538+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-02-01T16:00:05.607+07:00 DEBUG 44668 --- [Project Authentication] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, BearerTokenAuthenticationFilter, AuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-02-01T16:00:05.807+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-02-01T16:00:05.827+07:00  INFO 44668 --- [Project Authentication] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-02-01T16:00:05.833+07:00  INFO 44668 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Started ProjectAuthenticationApplication in 1.344 seconds (process running for 3253.585)
+2026-02-01T16:00:05.835+07:00  INFO 44668 --- [Project Authentication] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-02-01T16:00:12.324+07:00  INFO 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-01T16:00:12.324+07:00  INFO 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-01T16:00:12.326+07:00  INFO 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-01T16:00:12.328+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile
+2026-02-01T16:00:12.342+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.s.o.s.r.a.JwtAuthenticationProvider  : Authenticated token
+2026-02-01T16:00:12.343+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] .s.r.w.a.BearerTokenAuthenticationFilter : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@e20f5ead, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, Delete, a, post, Upload, post, thumbnail, Upload, profile, photo, View, a, single, user, profile, Create, a, post]]
+2026-02-01T16:00:12.344+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/public/users/my-profile
+2026-02-01T16:00:12.347+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfile(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:00:12.349+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfile(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:00:12.387+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.username,
+        ai1_0.url 
+    from
+        users u1_0 
+    left join
+        images ai1_0 
+            on ai1_0.id=u1_0.avatar_image_id 
+    where
+        u1_0.email=?
+2026-02-01T16:00:12.389+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
+2026-02-01T16:01:42.602+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile-details
+2026-02-01T16:01:42.607+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] o.s.s.o.s.r.a.JwtAuthenticationProvider  : Authenticated token
+2026-02-01T16:01:42.607+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] .s.r.w.a.BearerTokenAuthenticationFilter : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@e20f5ead, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, Delete, a, post, Upload, post, thumbnail, Upload, profile, photo, View, a, single, user, profile, Create, a, post]]
+2026-02-01T16:01:42.608+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/public/users/my-profile-details
+2026-02-01T16:01:42.609+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfileDetails(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:01:42.610+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfileDetails(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:01:42.612+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T16:01:42.613+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
+2026-02-01T16:01:56.512+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/logout
+2026-02-01T16:01:56.513+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T16:01:56.514+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/logout
+2026-02-01T16:01:56.520+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T16:01:56.522+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
+2026-02-01T16:02:02.761+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile
+2026-02-01T16:02:02.767+07:00 ERROR 44668 --- [Project Authentication] [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+java.lang.RuntimeException: Access token is blacklisted
+	at com.project.prjauth.service.Impl.RedisTokenServiceImpl.validateNotBlackListed(RedisTokenServiceImpl.java:59) ~[classes/:na]
+	at com.project.prjauth.config.JwtConfig.lambda$jwtDecoder$0(JwtConfig.java:35) ~[classes/:na]
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.getJwt(JwtAuthenticationProvider.java:99) ~[spring-security-oauth2-resource-server-6.5.7.jar:6.5.7]
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.authenticate(JwtAuthenticationProvider.java:88) ~[spring-security-oauth2-resource-server-6.5.7.jar:6.5.7]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182) ~[spring-security-core-6.5.7.jar:6.5.7]
+	at org.springframework.security.authentication.ObservationAuthenticationManager.lambda$authenticate$1(ObservationAuthenticationManager.java:54) ~[spring-security-core-6.5.7.jar:6.5.7]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.15.7.jar:1.15.7]
+	at org.springframework.security.authentication.ObservationAuthenticationManager.authenticate(ObservationAuthenticationManager.java:53) ~[spring-security-core-6.5.7.jar:6.5.7]
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:144) ~[spring-security-oauth2-resource-server-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:334) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:225) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319) ~[spring-security-config-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240) ~[spring-security-config-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+
+2026-02-01T16:02:02.781+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-02-01T16:02:02.781+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T16:02:07.876+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile-details
+2026-02-01T16:02:07.880+07:00 ERROR 44668 --- [Project Authentication] [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+java.lang.RuntimeException: Access token is blacklisted
+	at com.project.prjauth.service.Impl.RedisTokenServiceImpl.validateNotBlackListed(RedisTokenServiceImpl.java:59) ~[classes/:na]
+	at com.project.prjauth.config.JwtConfig.lambda$jwtDecoder$0(JwtConfig.java:35) ~[classes/:na]
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.getJwt(JwtAuthenticationProvider.java:99) ~[spring-security-oauth2-resource-server-6.5.7.jar:6.5.7]
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.authenticate(JwtAuthenticationProvider.java:88) ~[spring-security-oauth2-resource-server-6.5.7.jar:6.5.7]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182) ~[spring-security-core-6.5.7.jar:6.5.7]
+	at org.springframework.security.authentication.ObservationAuthenticationManager.lambda$authenticate$1(ObservationAuthenticationManager.java:54) ~[spring-security-core-6.5.7.jar:6.5.7]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.15.7.jar:1.15.7]
+	at org.springframework.security.authentication.ObservationAuthenticationManager.authenticate(ObservationAuthenticationManager.java:53) ~[spring-security-core-6.5.7.jar:6.5.7]
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:144) ~[spring-security-oauth2-resource-server-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:334) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:225) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319) ~[spring-security-config-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240) ~[spring-security-config-6.5.7.jar:6.5.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.15.jar:6.2.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.50.jar:10.1.50]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+
+2026-02-01T16:02:07.882+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-02-01T16:02:07.882+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T16:02:59.783+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/login
+2026-02-01T16:02:59.784+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T16:02:59.785+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/login
+2026-02-01T16:02:59.926+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.created_by,
+        r1_1.description,
+        r1_1.name,
+        p1_0.role_id,
+        p1_1.id,
+        p1_1.created_at,
+        p1_1.created_by,
+        p1_1.description,
+        p1_1.name,
+        p1_1.updated_at,
+        p1_1.updated_by,
+        r1_1.updated_at,
+        r1_1.updated_by,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_role r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    left join
+        role_permission p1_0 
+            on r1_1.id=p1_0.role_id 
+    left join
+        permissions p1_1 
+            on p1_1.id=p1_0.permission_id 
+    where
+        u1_0.email=?
+2026-02-01T16:02:59.926+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [admin@admin.com]
+2026-02-01T16:03:00.043+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-8] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2026-02-01T16:03:05.131+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile
+2026-02-01T16:03:05.135+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-10] o.s.s.o.s.r.a.JwtAuthenticationProvider  : Authenticated token
+2026-02-01T16:03:05.135+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-10] .s.r.w.a.BearerTokenAuthenticationFilter : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@edf81109, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_ADMIN, Add, permission, Add, role, Delete, role, View, all, user, profiles, Get, all, permissions, Delete, permission, Get, all, roles, View, a, single, user, profile]]
+2026-02-01T16:03:05.136+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/public/users/my-profile
+2026-02-01T16:03:05.136+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-10] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfile(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:03:05.137+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-10] horizationManagerBeforeMethodInterceptor : Failed to authorize ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfile(); target is of class [com.project.prjauth.controller.UserPublicController] with authorization manager org.springframework.security.authorization.ObservationAuthorizationManager@38208ba4 and result ExpressionAuthorizationDecision [granted=false, expressionAttribute=hasRole('USER')]
+2026-02-01T16:03:05.142+07:00  WARN 44668 --- [Project Authentication] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authorization.AuthorizationDeniedException: Access Denied]
+2026-02-01T16:03:16.199+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile-details
+2026-02-01T16:03:16.204+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.s.o.s.r.a.JwtAuthenticationProvider  : Authenticated token
+2026-02-01T16:03:16.204+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] .s.r.w.a.BearerTokenAuthenticationFilter : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@edf81109, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_ADMIN, Add, permission, Add, role, Delete, role, View, all, user, profiles, Get, all, permissions, Delete, permission, Get, all, roles, View, a, single, user, profile]]
+2026-02-01T16:03:16.205+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/public/users/my-profile-details
+2026-02-01T16:03:16.206+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfileDetails(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:03:16.207+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-2] horizationManagerBeforeMethodInterceptor : Failed to authorize ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfileDetails(); target is of class [com.project.prjauth.controller.UserPublicController] with authorization manager org.springframework.security.authorization.ObservationAuthorizationManager@38208ba4 and result ExpressionAuthorizationDecision [granted=false, expressionAttribute=hasRole('USER')]
+2026-02-01T16:03:16.209+07:00  WARN 44668 --- [Project Authentication] [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authorization.AuthorizationDeniedException: Access Denied]
+2026-02-01T16:03:21.376+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/logout
+2026-02-01T16:03:21.377+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T16:03:21.378+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/logout
+2026-02-01T16:03:21.381+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T16:03:21.382+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [admin@admin.com]
+2026-02-01T16:03:26.234+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/login
+2026-02-01T16:03:26.234+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T16:03:26.235+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/login
+2026-02-01T16:03:26.239+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.created_by,
+        r1_1.description,
+        r1_1.name,
+        p1_0.role_id,
+        p1_1.id,
+        p1_1.created_at,
+        p1_1.created_by,
+        p1_1.description,
+        p1_1.name,
+        p1_1.updated_at,
+        p1_1.updated_by,
+        r1_1.updated_at,
+        r1_1.updated_by,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_role r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    left join
+        role_permission p1_0 
+            on r1_1.id=p1_0.role_id 
+    left join
+        permissions p1_1 
+            on p1_1.id=p1_0.permission_id 
+    where
+        u1_0.email=?
+2026-02-01T16:03:26.239+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
+2026-02-01T16:03:26.388+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-5] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2026-02-01T16:03:30.845+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile
+2026-02-01T16:03:30.849+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] o.s.s.o.s.r.a.JwtAuthenticationProvider  : Authenticated token
+2026-02-01T16:03:30.849+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] .s.r.w.a.BearerTokenAuthenticationFilter : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@e4e3293f, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, View, a, single, user, profile, Create, a, post, Upload, post, thumbnail, Delete, a, post, Upload, profile, photo]]
+2026-02-01T16:03:30.851+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/public/users/my-profile
+2026-02-01T16:03:30.852+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfile(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:03:30.852+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfile(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:03:30.853+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.username,
+        ai1_0.url 
+    from
+        users u1_0 
+    left join
+        images ai1_0 
+            on ai1_0.id=u1_0.avatar_image_id 
+    where
+        u1_0.email=?
+2026-02-01T16:03:30.854+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]
+2026-02-01T16:03:34.782+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/public/users/my-profile-details
+2026-02-01T16:03:34.786+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] o.s.s.o.s.r.a.JwtAuthenticationProvider  : Authenticated token
+2026-02-01T16:03:34.787+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] .s.r.w.a.BearerTokenAuthenticationFilter : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@e4e3293f, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, View, a, single, user, profile, Create, a, post, Upload, post, thumbnail, Delete, a, post, Upload, profile, photo]]
+2026-02-01T16:03:34.787+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/public/users/my-profile-details
+2026-02-01T16:03:34.788+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfileDetails(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:03:34.789+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.project.prjauth.controller.UserPublicController.getCurrentUserProfileDetails(); target is of class [com.project.prjauth.controller.UserPublicController]
+2026-02-01T16:03:34.791+07:00 DEBUG 44668 --- [Project Authentication] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T16:03:34.792+07:00 TRACE 44668 --- [Project Authentication] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [vinh@gmail.com]

@@ -103,6 +103,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDetailsResponse getCurrentUserDetails() {
+        User user = userRepository.findByEmail(AuthenticationUtil.getCurrentUserEmail())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found!"));
+        return userMapper.toUserDetailsResponse(user);
+    }
+
+    @Override
     public UserProfileResponse getUserProfileById(Long id) {
         UserProfileResponse profile = userDisplayRepository.findUserProfileById(id);
         if (profile == null) {
