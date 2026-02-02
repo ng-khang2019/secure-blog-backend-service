@@ -38,7 +38,7 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public String generateRefreshToken(User user) {
         // Long TLL - 30 days
-        return generateToken(user,30, ChronoUnit.DAYS);
+        return generateToken(user,15, ChronoUnit.DAYS);
     }
 
     private String generateToken(User user, long amount, ChronoUnit unit) {
