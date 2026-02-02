@@ -129,8 +129,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUserById(Long id) {
+        if (id == 1L) {
+            throw new IllegalStateException("Cannot delete admin account!");
+        }
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " not found!"));
+        if (user.getEmail().equals(AuthenticationUtil.getCurrentUserEmail())) {
+            throw new IllegalStateException("Cannot delete current user!");
+        }
         userRepository.deleteById(id);
     }
 }
