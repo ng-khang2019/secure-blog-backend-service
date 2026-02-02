@@ -29,14 +29,14 @@ public class RedisTokenServiceImpl implements RedisTokenService {
     }
 
     @Override
-    public void blackListAccessToken(String jti, Instant expiration) {
+    public void blackListRefreshToken(String jti, Instant expiration) {
         long ttl = Duration.between(Instant.now(),expiration).getSeconds();
         // Do nothing if the token has expired
         if (ttl <= 0) return;
 
         // Set true means it's blacklisted
         redisTemplate.opsForValue()
-                .set("blacklist:access:" + jti,true,ttl, TimeUnit.SECONDS);
+                .set("blacklist:refresh:" + jti,true,ttl, TimeUnit.SECONDS);
 
     }
 
@@ -47,6 +47,7 @@ public class RedisTokenServiceImpl implements RedisTokenService {
 
     @Override
     public boolean validateRefreshToken(String email, String jti, String refreshToken) {
+        validateNotBlackListed(jti);
         String key = "refresh:" + email + ":" + jti;
         Object storedRefreshToken = redisTemplate.opsForValue().get(key);
         if (storedRefreshToken == null) return false;
@@ -55,8 +56,8 @@ public class RedisTokenServiceImpl implements RedisTokenService {
 
     @Override
     public void validateNotBlackListed(String jti) {
-        if (redisTemplate.hasKey("blacklist:access:" + jti)) {
-            throw new RuntimeException("Access token is blacklisted");
+        if (redisTemplate.hasKey("blacklist:refresh:" + jti)) {
+            throw new IllegalArgumentException("Refresh token is blacklisted");
         }
     }
 }

@@ -5626,3 +5626,268 @@ You may need to update both your build tool settings as well as your IDE.
 2026-02-01T17:25:43.662+07:00  INFO 86406 --- [Project Authentication] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-02-01T17:25:43.662+07:00  INFO 86406 --- [Project Authentication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
 2026-02-01T17:25:43.663+07:00  INFO 86406 --- [Project Authentication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2026-02-01T18:38:12.409+07:00  INFO 108669 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Starting ProjectAuthenticationApplication using Java 25.0.1 with PID 108669 (/home/khang-nguyen/Coding Journey/repos/Project Authentication/target/classes started by khang-nguyen in /home/khang-nguyen/Coding Journey/repos/Project Authentication)
+2026-02-01T18:38:12.412+07:00 DEBUG 108669 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Running with Spring Boot v3.5.9, Spring v6.2.15
+2026-02-01T18:38:12.413+07:00  INFO 108669 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : The following 1 profile is active: "dev"
+2026-02-01T18:38:12.476+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-01T18:38:12.477+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-01T18:38:13.591+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-01T18:38:13.593+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-01T18:38:13.721+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 119 ms. Found 4 JPA repository interfaces.
+2026-02-01T18:38:13.733+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-01T18:38:13.735+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-01T18:38:13.750+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.PermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T18:38:13.750+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T18:38:13.750+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.UserDisplayRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T18:38:13.751+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.project.prjauth.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-01T18:38:13.751+07:00  INFO 108669 --- [Project Authentication] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2026-02-01T18:38:14.313+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-01T18:38:14.329+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-01T18:38:14.330+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-01T18:38:14.358+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-01T18:38:14.358+07:00  INFO 108669 --- [Project Authentication] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1880 ms
+2026-02-01T18:38:14.559+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-01T18:38:14.592+07:00  INFO 108669 --- [Project Authentication] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-02-01T18:38:14.616+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-01T18:38:14.844+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-01T18:38:14.865+07:00  INFO 108669 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-01T18:38:14.975+07:00  INFO 108669 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@60ba7d58
+2026-02-01T18:38:14.976+07:00  INFO 108669 --- [Project Authentication] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-01T18:38:15.000+07:00  WARN 108669 --- [Project Authentication] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-01T18:38:15.017+07:00  INFO 108669 --- [Project Authentication] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-01T18:38:15.908+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-01T18:38:16.026+07:00  INFO 108669 --- [Project Authentication] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-01T18:38:16.298+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-01T18:38:16.951+07:00  INFO 108669 --- [Project Authentication] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-02-01T18:38:16.952+07:00  WARN 108669 --- [Project Authentication] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-02-01T18:38:17.543+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-02-01T18:38:17.670+07:00 DEBUG 108669 --- [Project Authentication] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, BearerTokenAuthenticationFilter, AuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-02-01T18:38:18.103+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-02-01T18:38:18.170+07:00  INFO 108669 --- [Project Authentication] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-02-01T18:38:18.184+07:00  INFO 108669 --- [Project Authentication] [restartedMain] c.p.p.ProjectAuthenticationApplication   : Started ProjectAuthenticationApplication in 6.395 seconds (process running for 7.079)
+2026-02-01T18:38:18.846+07:00  INFO 108669 --- [Project Authentication] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-01T18:38:18.847+07:00  INFO 108669 --- [Project Authentication] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-01T18:38:18.849+07:00  INFO 108669 --- [Project Authentication] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-01T18:39:01.425+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/login
+2026-02-01T18:39:01.440+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T18:39:01.446+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/login
+2026-02-01T18:39:01.694+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.created_by,
+        r1_1.description,
+        r1_1.name,
+        p1_0.role_id,
+        p1_1.id,
+        p1_1.created_at,
+        p1_1.created_by,
+        p1_1.description,
+        p1_1.name,
+        p1_1.updated_at,
+        p1_1.updated_by,
+        r1_1.updated_at,
+        r1_1.updated_by,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_role r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    left join
+        role_permission p1_0 
+            on r1_1.id=p1_0.role_id 
+    left join
+        permissions p1_1 
+            on p1_1.id=p1_0.permission_id 
+    where
+        u1_0.email=?
+2026-02-01T18:39:01.695+07:00 TRACE 108669 --- [Project Authentication] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T18:39:01.862+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2026-02-01T18:39:21.080+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/refresh
+2026-02-01T18:39:21.082+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T18:39:21.083+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/refresh
+2026-02-01T18:39:21.146+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T18:39:21.147+07:00 TRACE 108669 --- [Project Authentication] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T18:39:21.157+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.created_by,
+        r1_1.description,
+        r1_1.name,
+        p1_0.role_id,
+        p1_1.id,
+        p1_1.created_at,
+        p1_1.created_by,
+        p1_1.description,
+        p1_1.name,
+        p1_1.updated_at,
+        p1_1.updated_by,
+        r1_1.updated_at,
+        r1_1.updated_by,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_role r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    left join
+        role_permission p1_0 
+            on r1_1.id=p1_0.role_id 
+    left join
+        permissions p1_1 
+            on p1_1.id=p1_0.permission_id 
+    where
+        u1_0.email=?
+2026-02-01T18:39:21.157+07:00 TRACE 108669 --- [Project Authentication] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T18:39:56.272+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/refresh
+2026-02-01T18:39:56.273+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T18:39:56.275+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/refresh
+2026-02-01T18:39:56.278+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T18:39:56.281+07:00 TRACE 108669 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T18:39:56.287+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.created_by,
+        r1_1.description,
+        r1_1.name,
+        p1_0.role_id,
+        p1_1.id,
+        p1_1.created_at,
+        p1_1.created_by,
+        p1_1.description,
+        p1_1.name,
+        p1_1.updated_at,
+        p1_1.updated_by,
+        r1_1.updated_at,
+        r1_1.updated_by,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_role r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    left join
+        role_permission p1_0 
+            on r1_1.id=p1_0.role_id 
+    left join
+        permissions p1_1 
+            on p1_1.id=p1_0.permission_id 
+    where
+        u1_0.email=?
+2026-02-01T18:39:56.287+07:00 TRACE 108669 --- [Project Authentication] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T18:40:28.514+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/logout
+2026-02-01T18:40:28.515+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-02-01T18:40:28.516+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/logout
+2026-02-01T18:40:28.522+07:00 DEBUG 108669 --- [Project Authentication] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.avatar_image_id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-02-01T18:40:28.524+07:00 TRACE 108669 --- [Project Authentication] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [map@gmail.com]
+2026-02-01T19:14:28.355+07:00  INFO 108669 --- [Project Authentication] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-01T19:14:28.358+07:00  INFO 108669 --- [Project Authentication] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-01T19:14:28.390+07:00  INFO 108669 --- [Project Authentication] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-01T19:14:28.395+07:00  INFO 108669 --- [Project Authentication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-01T19:14:28.398+07:00  INFO 108669 --- [Project Authentication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
