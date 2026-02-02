@@ -32,7 +32,6 @@ public class JwtConfig {
                 .build();
         return token -> {
             Jwt jwt = jwtDecoder.decode(token);
-            redisTokenService.validateNotBlackListed(jwt.getId());
             return jwt;
         };
     }
