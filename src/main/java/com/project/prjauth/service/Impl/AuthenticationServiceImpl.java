@@ -47,7 +47,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         // Set cookies
         addCookie(response,"access_token",accessToken,15*60);
-        addCookie(response, "refresh_token", refreshToken,30*24*60*60);
+        addCookie(response, "refresh_token", refreshToken,15*24*60*60);
 
         // Save the refresh token to Redis
         redisTokenService.saveRefreshToken(
@@ -78,6 +78,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new IllegalArgumentException("Refresh token is invalid");
         }
 
+        // Blacklisting the refresh token
+        redisTokenService.blackListRefreshToken(refreshJti,jwtService.extractExpiration(refreshToken));
+
         // Revoke the old refresh token
         redisTokenService.revokeRefreshToken(email,refreshJti);
 
@@ -87,7 +90,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         // Set cookies
         addCookie(response,"access_token",newAccessToken,15*60);
-        addCookie(response, "refresh_token", newRefreshToken,30*24*60*60);
+        addCookie(response, "refresh_token", newRefreshToken,15*24*60*60);
 
         // Save the new refresh token to Redis database
         redisTokenService.saveRefreshToken(
@@ -107,7 +110,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         // Extract metadata from tokens
         String email = jwtService.extractUsername(refreshToken);
         String refreshJti = jwtService.extractJti(refreshToken);
-        String accessJti = jwtService.extractJti(accessToken);
 
         // Validation check
         if (!redisTokenService.validateRefreshToken(email,refreshJti,refreshToken)) {
@@ -115,7 +117,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
 
         // Blacklisting and revoking tokens
-        redisTokenService.blackListAccessToken(accessJti,jwtService.extractExpiration(accessToken));
+        redisTokenService.blackListRefreshToken(refreshJti,jwtService.extractExpiration(refreshToken));
         redisTokenService.revokeRefreshToken(email,refreshJti);
 
         // Clear cookies
