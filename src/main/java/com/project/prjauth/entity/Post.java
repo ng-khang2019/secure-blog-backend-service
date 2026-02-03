@@ -29,6 +29,10 @@ public class Post extends BaseEntity<Long> {
     @Column(nullable = false)
     Integer readingTime;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "thumbnail_id")
+    Image thumbnail;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="author_id", nullable = false)
     User author;
