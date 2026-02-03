@@ -46,7 +46,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String refreshToken = jwtService.generateRefreshToken(user);
 
         // Set cookies
-        addCookie(response,"access_token",accessToken,15*60);
+        addCookie(response,"access_token",accessToken,30*60);
         addCookie(response, "refresh_token", refreshToken,15*24*60*60);
 
         // Save the refresh token to Redis
@@ -89,7 +89,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String newRefreshToken = jwtService.generateRefreshToken(user);
 
         // Set cookies
-        addCookie(response,"access_token",newAccessToken,15*60);
+        addCookie(response,"access_token",newAccessToken,30*60);
         addCookie(response, "refresh_token", newRefreshToken,15*24*60*60);
 
         // Save the new refresh token to Redis database

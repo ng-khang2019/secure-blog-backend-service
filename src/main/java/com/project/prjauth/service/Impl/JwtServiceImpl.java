@@ -32,7 +32,7 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public String generateAccessToken(User user) {
         // Short TTL - 15 minutes
-        return generateToken(user,15, ChronoUnit.MINUTES);
+        return generateToken(user, 30,ChronoUnit.MINUTES);
     }
 
     @Override
