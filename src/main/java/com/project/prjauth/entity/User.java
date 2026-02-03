@@ -1,10 +1,11 @@
 package com.project.prjauth.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity @Table(name = "users")
@@ -42,4 +43,6 @@ public class User extends BaseEntity<Long> {
     @JoinColumn(name = "avatar_image_id")
     Image avatarImage;
 
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> posts =  new ArrayList<>();
 }
