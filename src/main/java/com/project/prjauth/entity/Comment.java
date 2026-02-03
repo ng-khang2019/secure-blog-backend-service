@@ -25,5 +25,6 @@ public class Comment extends BaseEntity<Long>{
     Comment parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     List<Comment> children = new ArrayList<>();
 }

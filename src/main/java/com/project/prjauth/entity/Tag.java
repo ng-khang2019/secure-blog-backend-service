@@ -19,6 +19,7 @@ public class Tag extends BaseEntity<Long> {
     @Column(nullable = false, unique = true)
     String name;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "tags")
     Set<Post> posts = new HashSet<>();
 }

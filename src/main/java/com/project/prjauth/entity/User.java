@@ -44,9 +44,11 @@ public class User extends BaseEntity<Long> {
     @JoinColumn(name = "avatar_image_id")
     Image avatarImage;
 
+    @Builder.Default
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> posts =  new ArrayList<>();
+    List<Post> posts =  new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL, orphanRemoval = true)
     Set<Subscription> subscriptions = new HashSet<>();
 }
