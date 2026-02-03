@@ -6,7 +6,13 @@ import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
-@Entity @Table(name = "subscriptions")
+@Entity
+@Table(
+        name = "subscriptions",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"author_id", "subcriber_id"})
+        }
+)
 @Getter @Setter @Builder
 @NoArgsConstructor @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
