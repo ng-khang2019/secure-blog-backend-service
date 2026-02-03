@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-
 @Entity @Table(name = "permissions")
 @Getter @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
