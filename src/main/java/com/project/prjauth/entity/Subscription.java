@@ -16,8 +16,9 @@ public class Subscription extends BaseEntity<Long> {
     @JoinColumn(name = "author_id", nullable = false)
     User author;
 
-    @Column(name = "subcriber_email",nullable = false)
-    String subcriberEmail;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subcriber_id",nullable = false)
+    User subscriber;
 
     // User big decimal for precise calculation
     @Column(nullable = false)
