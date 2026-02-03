@@ -3,6 +3,7 @@ package com.project.prjauth.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity @Table(name = "users")
+@DynamicUpdate
 @Getter @Setter @Builder
 @AllArgsConstructor @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
