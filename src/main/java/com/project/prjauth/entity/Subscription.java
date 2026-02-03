@@ -20,7 +20,7 @@ public class Subscription extends BaseEntity<Long> {
     @JoinColumn(name = "subcriber_id",nullable = false)
     User subscriber;
 
-    // User big decimal for precise calculation
+    // Use big decimal for precise calculation
     @Column(nullable = false)
     BigDecimal totalAmount = BigDecimal.ZERO;
 
