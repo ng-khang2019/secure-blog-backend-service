@@ -50,8 +50,4 @@ public class Post extends BaseEntity<Long> {
     )
     Set<Tag> tags = new HashSet<>();
 
-    @Builder.Default
-    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL,orphanRemoval = true)
-    List<Comment> comments = new ArrayList<>();
-
 }
