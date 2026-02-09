@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 @MappedSuperclass
 @EntityListeners( value = { AuditingEntityListener.class })
-@JsonIgnoreProperties(value = { "createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate" }, allowGetters = true)
+@JsonIgnoreProperties(value = { "createdAt", "createdBy", "updatedAt", "updatedBy" }, allowGetters = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public abstract class BaseEntity<T extends Serializable> implements Serializable {
     @Id
