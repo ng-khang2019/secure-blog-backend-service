@@ -18,8 +18,11 @@ public class AuthenticationUtil {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    public static String getCurrentUserEmail() {
-        Authentication authentication = getAuthentication();
+    /**
+     * Extract principal (contains email) from different types of
+     * an authentication object (from many cases)
+     */
+    public static String extractPrincipal(Authentication authentication) {
         Object principal = authentication.getPrincipal();
 
         if (principal instanceof Jwt jwt) {
@@ -28,7 +31,16 @@ public class AuthenticationUtil {
         if (principal instanceof UserDetails ud) {
             return ud.getUsername();
         }
-        throw new IllegalStateException("Cannot extract principal");
+        if (principal instanceof String s) {
+            return s;
+        }
+        // Throw exception if different a type of principal is found
+        throw new IllegalStateException("Unsupported principal type: " + principal);
+    }
+
+    public static String getCurrentUserEmail() {
+        Authentication authentication = getAuthentication();
+        return extractPrincipal(authentication);
     }
 
     public static Long getUserId() {
@@ -47,25 +59,5 @@ public class AuthenticationUtil {
             return ((CustomUserDetails) principal).getUser();
         }
         throw new IllegalStateException("Cannot extract user from authentication object");
-    }
-
-    /**
-     * Extract principal (contains email) from different types of
-     * an authentication object (from many cases)
-     */
-    public static String extractPrincipal(Authentication authentication) {
-        Object principal = authentication.getPrincipal();
-
-        if (principal instanceof CustomUserDetails) {
-            return ((CustomUserDetails) principal).getUsername();
-        }
-        if (principal instanceof String) {
-            return (String) principal;
-        }
-        if (principal instanceof Jwt jwt) {
-            return jwt.getSubject();
-        }
-        // Throw exception if different a type of principal is found
-        throw new IllegalStateException("Unsupported principal type: " + principal);
     }
 }
