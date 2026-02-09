@@ -47,6 +47,12 @@ public class UserPublicController {
         return ResponseEntity.ok(userService.getUserProfileById(id));
     }
 
+    // Load user by username
+    @GetMapping("/{username}")
+    public ResponseEntity<UserProfileResponse> getUserProfileByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(userService.getUserProfileByUsername(username));
+    }
+
     // Load the current user's profile
     @GetMapping("/my-profile")
     @PreAuthorize("hasRole('USER')")
