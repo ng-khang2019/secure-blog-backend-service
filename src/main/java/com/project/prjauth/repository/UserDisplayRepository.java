@@ -17,6 +17,15 @@ public interface UserDisplayRepository extends JpaRepository<User,Long> {
     UserProfileResponse findUserProfileById(Long id);
 
     @Query("""
+        Select new com.project.prjauth.dto.response.UserProfileResponse(
+            u.id, u.firstName, u.lastName, u.username, i.url )
+        From User u
+        Left Join u.avatarImage i
+        Where u.username = :username
+    """)
+    UserProfileResponse findUserProfileByUsername(String username);
+
+    @Query("""
             Select new com.project.prjauth.dto.response.UserProfileResponse(
                 u.id, u.firstName, u.lastName, u.username, i.url)
             From User u
