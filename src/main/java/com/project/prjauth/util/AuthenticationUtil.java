@@ -51,13 +51,4 @@ public class AuthenticationUtil {
         }
         throw new IllegalStateException("Cannot extract user id from authentication object");
     }
-
-    public static User getUser() {
-        Authentication authentication = getAuthentication();
-        Object principal = authentication.getPrincipal();
-        if (principal instanceof CustomUserDetails) {
-            return ((CustomUserDetails) principal).getUser();
-        }
-        throw new IllegalStateException("Cannot extract user from authentication object");
-    }
 }
