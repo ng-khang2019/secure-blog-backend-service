@@ -28,6 +28,10 @@ public class Comment {
     String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "post_id", nullable = false)
     Post post;
 
