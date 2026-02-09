@@ -4,6 +4,7 @@ import com.project.prjauth.constant.PostStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Getter @Setter @Builder
 @AllArgsConstructor @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@DynamicUpdate
 public class Post extends BaseEntity<Long> {
 
     @Column(nullable = false)
