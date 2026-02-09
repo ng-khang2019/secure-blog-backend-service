@@ -24,7 +24,7 @@ public class Comment {
     @Column(name = "id")
     Long id;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT", length = 1000)
     String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
