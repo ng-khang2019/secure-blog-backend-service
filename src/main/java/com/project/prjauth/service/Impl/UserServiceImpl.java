@@ -115,6 +115,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserProfileResponse getUserProfileByUsername(String username) {
+        UserProfileResponse profile = userDisplayRepository.findUserProfileByUsername(username);
+        if (profile == null) {
+            throw new ResourceNotFoundException("User not found!");
+        }
+        return profile;
+    }
+
+    @Override
     public UserDetailsResponse getUserDetailsById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found!"));

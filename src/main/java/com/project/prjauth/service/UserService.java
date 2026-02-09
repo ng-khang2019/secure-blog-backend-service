@@ -12,6 +12,7 @@ public interface UserService {
     UserProfileResponse getCurrentUserProfile();
     UserDetailsResponse getCurrentUserDetails();
     UserProfileResponse getUserProfileById(Long id);
+    UserProfileResponse getUserProfileByUsername(String username);
     UserDetailsResponse getUserDetailsById(Long id);
     Page<UserDetailsResponse> getUsers(Pageable pageable);
     UserDetailsResponse createUser(UserRegistrationRequest request);
