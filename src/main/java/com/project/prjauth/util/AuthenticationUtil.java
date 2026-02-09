@@ -1,7 +1,6 @@
 package com.project.prjauth.util;
 
 import com.project.prjauth.entity.CustomUserDetails;
-import com.project.prjauth.entity.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
