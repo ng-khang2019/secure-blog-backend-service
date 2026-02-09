@@ -13,10 +13,10 @@ public class CommentResponse {
     Long id;
     String content;
     LocalDateTime createdAt;
-    LocalDateTime updatedAt;
+
     Long userId;
     String firstName;
     String lastName;
 
-    List<CommentResponse> replies = new ArrayList<>();
+    Long repliesCount;
 }
