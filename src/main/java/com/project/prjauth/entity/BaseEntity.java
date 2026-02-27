@@ -27,11 +27,11 @@ public abstract class BaseEntity<T extends Serializable> implements Serializable
     T id;
 
     @CreationTimestamp
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     LocalDateTime createdAt;
 
     @CreatedBy
-    @Column(name = "created_by")
+    @Column(name = "created_by", updatable = false)
     String createdBy;
 
     @UpdateTimestamp
