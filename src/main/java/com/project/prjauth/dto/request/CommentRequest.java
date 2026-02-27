@@ -12,5 +12,5 @@ public class CommentRequest {
     @NotBlank( message = "Comment cannot be blank")
     @Size(min = 2, message = "Comment must be at least 2 characters long")
     @WordRange(min = 1, max = 400, message = "Comment must be between 1 and 400 words")
-    String content;
+    private String content;
 }

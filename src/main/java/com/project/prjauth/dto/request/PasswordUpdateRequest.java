@@ -10,9 +10,9 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class PasswordUpdateRequest {
-    String oldPassword;
+    private String oldPassword;
 
     @Size(min = 6, message = "Password must be at least 6 characters long")
     @NotBlank(message = "Password cannot be blank")
-    String newPassword;
+    private String newPassword;
 }
