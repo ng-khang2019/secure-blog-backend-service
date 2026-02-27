@@ -15,6 +15,7 @@ import com.project.prjauth.repository.UserDisplayRepository;
 import com.project.prjauth.repository.UserRepository;
 import com.project.prjauth.service.UserService;
 import com.project.prjauth.util.AuthenticationUtil;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,6 +71,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void updatePassword(PasswordUpdateRequest request) {
         User user = userRepository.findByEmail(AuthenticationUtil.getCurrentUserEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found!"));
@@ -137,6 +139,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUserById(Long id) {
         if (id == 1L) {
             throw new IllegalStateException("Cannot delete admin account!");
