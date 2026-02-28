@@ -44,6 +44,9 @@ public class CommentServiceImpl implements CommentService {
                 () -> new ResourceNotFoundException("Post not found"));
         Comment parentComment = commentRepository.findById(parentId).orElseThrow(
                 () -> new ResourceNotFoundException("Parent comment not found"));
+        if (!parentComment.getPost().getId().equals(postId)) {
+            throw new IllegalArgumentException("Parent comment does not belong to the post");
+        }
         Comment reply = Comment.builder()
                 .content(request.getContent())
                 .user(currentUser)
