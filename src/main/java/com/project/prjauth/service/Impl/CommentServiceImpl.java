@@ -38,8 +38,19 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional
     public CommentResponse replyToComment(Long postId, Long parentId, CommentRequest request, User currentUser) {
-        return null;
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new ResourceNotFoundException("Post not found"));
+        Comment parentComment = commentRepository.findById(parentId).orElseThrow(
+                () -> new ResourceNotFoundException("Parent comment not found"));
+        Comment reply = Comment.builder()
+                .content(request.getContent())
+                .user(currentUser)
+                .post(post)
+                .parent(parentComment)
+                .build();
+        return CommentMapper.toCommentResponse(commentRepository.save(reply));
     }
 
     @Override
@@ -58,6 +69,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional
     public void deleteComment(Long commentId, User currentUser) {
 
     }
