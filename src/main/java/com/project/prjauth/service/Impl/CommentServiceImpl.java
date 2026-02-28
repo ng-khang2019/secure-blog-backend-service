@@ -20,13 +20,14 @@ import org.springframework.stereotype.Service;
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
-    private final CommentMapper CommentMapper;
+    private final CommentMapper commentMapper;
 
     @Override
     @Transactional
     public CommentResponse createComment(Long postId, CommentRequest request, User currentUser) {
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new ResourceNotFoundException("Post not found"));
+                () -> new ResourceNotFoundException("Post not found")
+        );
         Comment comment = Comment.builder()
                 .content(request.getContent())
                 .user(currentUser)
@@ -34,16 +35,18 @@ public class CommentServiceImpl implements CommentService {
                 .parent(null)
                 .build();
 
-        return CommentMapper.toCommentResponse(commentRepository.save(comment));
+        return commentMapper.toCommentResponse(commentRepository.save(comment));
     }
 
     @Override
     @Transactional
     public CommentResponse replyToComment(Long postId, Long parentId, CommentRequest request, User currentUser) {
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new ResourceNotFoundException("Post not found"));
+                () -> new ResourceNotFoundException("Post not found")
+        );
         Comment parentComment = commentRepository.findById(parentId).orElseThrow(
-                () -> new ResourceNotFoundException("Parent comment not found"));
+                () -> new ResourceNotFoundException("Parent comment not found")
+        );
         if (!parentComment.getPost().getId().equals(postId)) {
             throw new IllegalArgumentException("Parent comment does not belong to the post");
         }
@@ -53,12 +56,20 @@ public class CommentServiceImpl implements CommentService {
                 .post(post)
                 .parent(parentComment)
                 .build();
-        return CommentMapper.toCommentResponse(commentRepository.save(reply));
+        return commentMapper.toCommentResponse(commentRepository.save(reply));
     }
 
     @Override
+    @Transactional
     public CommentResponse editComment(Long commentId, CommentRequest request, User currentUser) {
-        return null;
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new ResourceNotFoundException("Comment not found")
+        );
+        if (!comment.getUser().getEmail().equals(currentUser.getEmail())) {
+            throw new IllegalStateException("You are not authorized to edit this comment");
+        }
+        comment.setContent(request.getContent());
+        return commentMapper.toCommentResponse(commentRepository.save(comment));
     }
 
     @Override
