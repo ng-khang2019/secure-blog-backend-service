@@ -91,8 +91,9 @@ public class CommentServiceImpl implements CommentService {
                 () -> new ResourceNotFoundException("Comment not found"));
 
         boolean isOwner = comment.getUser().getEmail().equals(currentUser.getEmail());
-        boolean isAdmin = currentUser.getRoles().contains(
-                roleRepository.findByName(PredefinedRole.ADMIN_ROLE).orElse(null));
+        boolean isAdmin = currentUser.getRoles()
+                .stream()
+                .anyMatch(role -> role.getName().equals(PredefinedRole.ADMIN_ROLE));
 
         if (!isOwner && !isAdmin) {
             throw new IllegalStateException("You are not authorized to delete this comment");
