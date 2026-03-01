@@ -1,5 +1,6 @@
 package com.project.prjauth.service.Impl;
 
+import com.project.prjauth.constant.PredefinedRole;
 import com.project.prjauth.dto.request.CommentRequest;
 import com.project.prjauth.dto.response.CommentResponse;
 import com.project.prjauth.entity.Comment;
@@ -9,6 +10,7 @@ import com.project.prjauth.exception.ResourceNotFoundException;
 import com.project.prjauth.mapper.CommentMapper;
 import com.project.prjauth.repository.CommentRepository;
 import com.project.prjauth.repository.PostRepository;
+import com.project.prjauth.repository.RoleRepository;
 import com.project.prjauth.service.CommentService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +22,14 @@ import org.springframework.stereotype.Service;
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
+    private final RoleRepository roleRepository;
     private final CommentMapper commentMapper;
 
     @Override
     @Transactional
     public CommentResponse createComment(Long postId, CommentRequest request, User currentUser) {
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new ResourceNotFoundException("Post not found")
-        );
+                () -> new ResourceNotFoundException("Post not found"));
         Comment comment = Comment.builder()
                 .content(request.getContent())
                 .user(currentUser)
@@ -42,14 +44,14 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     public CommentResponse replyToComment(Long postId, Long parentId, CommentRequest request, User currentUser) {
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new ResourceNotFoundException("Post not found")
-        );
+                () -> new ResourceNotFoundException("Post not found"));
+
         Comment parentComment = commentRepository.findById(parentId).orElseThrow(
-                () -> new ResourceNotFoundException("Parent comment not found")
-        );
+                () -> new ResourceNotFoundException("Parent comment not found"));
+
         if (!parentComment.getPost().getId().equals(postId)) {
-            throw new IllegalArgumentException("Parent comment does not belong to the post");
-        }
+            throw new IllegalArgumentException("Parent comment does not belong to the post");}
+
         Comment reply = Comment.builder()
                 .content(request.getContent())
                 .user(currentUser)
@@ -63,11 +65,11 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     public CommentResponse editComment(Long commentId, CommentRequest request, User currentUser) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
-                () -> new ResourceNotFoundException("Comment not found")
-        );
+                () -> new ResourceNotFoundException("Comment not found"));
+
         if (!comment.getUser().getEmail().equals(currentUser.getEmail())) {
-            throw new IllegalStateException("You are not authorized to edit this comment");
-        }
+            throw new IllegalStateException("You are not authorized to edit this comment");}
+
         comment.setContent(request.getContent());
         return commentMapper.toCommentResponse(commentRepository.save(comment));
     }
@@ -85,6 +87,16 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public void deleteComment(Long commentId, User currentUser) {
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new ResourceNotFoundException("Comment not found"));
 
+        boolean isOwner = comment.getUser().getEmail().equals(currentUser.getEmail());
+        boolean isAdmin = currentUser.getRoles().contains(
+                roleRepository.findByName(PredefinedRole.ADMIN_ROLE).orElse(null));
+
+        if (!isOwner && !isAdmin) {
+            throw new IllegalStateException("You are not authorized to delete this comment");
+        }
+        commentRepository.delete(comment);
     }
 }
